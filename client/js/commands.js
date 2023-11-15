@@ -22,6 +22,10 @@ class fixedCommand {
             sock.emit(this.sockEmitFlag, { deployShipCoords, deployShipMap, nickname });
             return;
         }
+        if (this.sockEmitFlag === 'restoreData') {
+            sock.emit(this.sockEmitFlag, nickname);
+            return;
+        }
 
         sock.emit(this.sockEmitFlag);
 
@@ -257,6 +261,7 @@ const allCommands = [
     new fixedCommand("TCR: off secret mode", 'offSecretMode'),
     new fixedCommand("TCR: result", 'updateTargetMap'),
     new fixedCommand("TCR: launch missile", 'launch'),
+    new fixedCommand("TCR: restore data", 'restoreData'),
     new fixedCommand("TCR: reveal all ships", 'revealAll'),
     new fixedFreeCommand(nickname + ": deploy", 'deployShip'),
     new fixedFreeCommand(nickname + ": add ship", 'addShip'),

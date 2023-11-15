@@ -128,6 +128,11 @@ io.sockets.on('connection', function (sock) {
 
         sock.id = data; //"TCR"
         io.emit('chat-to-clients', data + " connected");
+        const [ redShipsCount, redShipsDestroyed ] = [mainSystem.shipsLocations["red"].length, mainSystem.allHits["red"].length];
+        const [ blueShipsCount, blueShipsDestroyed ] = [mainSystem.shipsLocations["blue"].length, mainSystem.allHits["blue"].length];
+        io.emit('chat-to-clients', `Total Red Ships: ${redShipsCount}`);
+        io.emit('chat-to-clients', `Total Blue Ships: ${blueShipsCount}`);
+
         if (!mainSystem.studentIdArr.includes(data)) return;
         mainSystem.connectedUsers.push(data);
 
@@ -357,7 +362,7 @@ io.sockets.on('connection', function (sock) {
         const txtAllCrates = JSON.stringify(mainSystem.allCrates);
         const txtcratesFound = JSON.stringify(mainSystem.cratesFound);
 
-        const writeToFile = `Loc: ${txtShipLocations} \n Hits: ${txtAllHits} \n Misses: ${txtAllMisses} \n Crates: ${txtAllCrates} \n Found: ${txtcratesFound}`;
+        const writeToFile = `"Loc": ${txtShipLocations} \n "Hits": ${txtAllHits} \n "Misses": ${txtAllMisses} \n "Crates": ${txtAllCrates} \n "Found": ${txtcratesFound}`;
         fs.writeFile('history.txt', writeToFile, err => {
             if(err) {
                 console.err;
@@ -370,6 +375,35 @@ io.sockets.on('connection', function (sock) {
     sock.on('launch', () => {
         sock.emit('pushLocationsToTCR', mainSystem);
         mainSystem.resultPending = true;
+    });
+    sock.on('restoreData', () => {
+        fs.readFile('history.txt', function(err, data) {
+            if(err) throw err;
+            var testArray = data.toString().split("\n");
+            for(i in testArray) {
+                // io.emit('chat-to-clients', testArray[i]);
+                
+                const vitalObjects = { 
+                    0: mainSystem.shipsLocations,
+                    1: mainSystem.allHits,
+                    2: mainSystem.allMisses,
+                    3: mainSystem.allCrates,
+                    4: mainSystem.cratesFound
+                }
+                const convertToJson = JSON.parse(`{${testArray[i]}}`);
+                
+                vitalObjects[i]["red"] = Object.entries(convertToJson)[0][1]["red"];
+                vitalObjects[i]["blue"] = Object.entries(convertToJson)[0][1]["blue"];
+
+            }
+            const [ redShipsCount, redShipsDestroyed ] = [mainSystem.shipsLocations["red"].length, mainSystem.allHits["red"].length];
+            const [ blueShipsCount, blueShipsDestroyed ] = [mainSystem.shipsLocations["blue"].length, mainSystem.allHits["blue"].length];
+            io.emit('chat-to-clients', `Total Red Ships: ${redShipsCount}`);
+            io.emit('chat-to-clients', `Total Blue Ships: ${blueShipsCount}`);
+            
+            
+        });
+        
     });
 
     sock.on('swapTCR', () => {

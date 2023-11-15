@@ -648,6 +648,20 @@ sock.on('updateMapIfRefreshed', data => {
         img.style = "width:30px;height:30px";
         document.getElementById(`blue${coord}`).appendChild(img);
     });
+    data.cratesFound["red"].forEach(coord => {
+        document.getElementById(`red${coord}`).innerHTML = "";
+        const img = document.createElement('img');
+        img.src = "https://cdn3.iconfinder.com/data/icons/virtual-reality-and-drones/65/_Crate_Drop-1024.png";
+        img.style = "width:30px;height:30px";
+        document.getElementById(`red${coord}`).appendChild(img);
+    });
+    data.cratesFound["blue"].forEach(coord => {
+        document.getElementById(`blue${coord}`).innerHTML = "";
+        const img = document.createElement('img');
+        img.src = "https://cdn3.iconfinder.com/data/icons/virtual-reality-and-drones/65/_Crate_Drop-1024.png";
+        img.style = "width:30px;height:30px";
+        document.getElementById(`blue${coord}`).appendChild(img);
+    });
 });
 
 sock.on('revealAllAtClient', data => {
@@ -691,50 +705,50 @@ sock.on('pushLocationsToTCR', data => {
 
     // console.log(studentsArr);
     if (data.shipsLocations[targetMap].includes(targetCoord)) {
-        // gDrv1 = "https://drive.google.com/file/d/1kL-6P-VordZC9O8upAx9hW_yPbXe9_BY/view?usp=sharing";
-        // window.open(gDrv1, "_blank");
+        gDrv1 = "https://drive.google.com/file/d/1kL-6P-VordZC9O8upAx9hW_yPbXe9_BY/view?usp=sharing";
+        window.open(gDrv1, "_blank");
 
-        const videoDiv = document.querySelector('.video2');
-        videoDiv.classList.add('active');
-        const clip = document.querySelector('.clip2');
-        clip.play();
+        // const videoDiv = document.querySelector('.video2');
+        // videoDiv.classList.add('active');
+        // const clip = document.querySelector('.clip2');
+        // clip.play();
 
-        setTimeout(() => {
-            clip.pause();
-            clip.currentTime = 0;
-            videoDiv.classList.remove('active');
-        }, 17000);
+        // setTimeout(() => {
+        //     clip.pause();
+        //     clip.currentTime = 0;
+        //     videoDiv.classList.remove('active');
+        // }, 17000);
 
         //console.log("Hit")
     }else if (data.allCrates[targetMap].includes(targetCoord)) {
-        // gDrv1 = "https://drive.google.com/file/d/1kL-6P-VordZC9O8upAx9hW_yPbXe9_BY/view?usp=sharing";
-        // window.open(gDrv1, "_blank");
-        const videoDiv = document.querySelector('.video3');
-        videoDiv.classList.add('active');
-        const clip = document.querySelector('.clip3');
-        clip.play();
+        gDrv1 = "https://drive.google.com/file/d/1XyLIyCJ7eVu9cWAv2n2Eae-tTOroAsr6/view?usp=sharing";
+        window.open(gDrv1, "_blank");
+        // const videoDiv = document.querySelector('.video3');
+        // videoDiv.classList.add('active');
+        // const clip = document.querySelector('.clip3');
+        // clip.play();
 
-        setTimeout(() => {
-            clip.pause();
-            clip.currentTime = 0;
-            videoDiv.classList.remove('active');
-        }, 17000);
+        // setTimeout(() => {
+        //     clip.pause();
+        //     clip.currentTime = 0;
+        //     videoDiv.classList.remove('active');
+        // }, 17000);
 
         //console.log("Hit")
     } else {
-        // gDrv2 = "https://drive.google.com/file/d/15KRceSBG9Z-uTgGvDym33TsKoBlIJ1TO/view?usp=sharing"
-        // window.open(gDrv2, "_blank");
+        gDrv2 = "https://drive.google.com/file/d/15KRceSBG9Z-uTgGvDym33TsKoBlIJ1TO/view?usp=sharing"
+        window.open(gDrv2, "_blank");
 
-        const videoDiv = document.querySelector('.video');
-        videoDiv.classList.add('active');
-        const clip = document.querySelector('.clip1');
-        clip.play();
+        // const videoDiv = document.querySelector('.video');
+        // videoDiv.classList.add('active');
+        // const clip = document.querySelector('.clip1');
+        // clip.play();
 
-        setTimeout(() => {
-            clip.pause();
-            clip.currentTime = 0;
-            videoDiv.classList.remove('active');
-        }, 11000);
+        // setTimeout(() => {
+        //     clip.pause();
+        //     clip.currentTime = 0;
+        //     videoDiv.classList.remove('active');
+        // }, 11000);
         
         //console.log("Miss")
     }
