@@ -1,0 +1,5 @@
+Loc: {"red":[9,15,18,17,25],"blue":[1,18,10,24]} 
+ Hits: {"red":[],"blue":[13]} 
+ Misses: {"red":[19],"blue":[]} 
+ Crates: {"red":[],"blue":[]} 
+ Found: {"red":[],"blue":[]}
