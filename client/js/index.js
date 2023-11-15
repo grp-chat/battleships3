@@ -760,6 +760,11 @@ sock.on('pushLocationsToTCR', data => {
     
 
 });
+sock.on('displayAirDrop', data => {
+    const gDrv1 = "https://drive.google.com/file/d/1xPhqS8Dp3n2lTg5Wo6JczNBiyNWxvADo/view?usp=sharing";
+    window.open(gDrv1, "_blank");
+
+});
 
 sock.on('swapTCRMap', data => {
     const swapMode = true;

@@ -256,6 +256,7 @@ const allCommands = [
     new fixedCommand("TCR: swap teams", 'swapTeams'),
     new fixedCommand("TCR: call locations", 'callLocations'),
     new fixedCommand("TCR: all ships info", 'allShipsInfo'),
+    new fixedCommand("TCR: get air drop", 'getAirDrop'),
     new fixedCommand("TCR: swap TCR", 'swapTCR'),
     new fixedCommand("TCR: secret mode", 'secretMode'),
     new fixedCommand("TCR: off secret mode", 'offSecretMode'),

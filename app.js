@@ -453,6 +453,16 @@ io.sockets.on('connection', function (sock) {
         io.emit('chat-to-clients', `Red Crates: F${redCratesFound}R${redCratesCount},Blue Crates: F${blueCratesFound}R${blueCratesCount}`);
     });
 
+    sock.on('getAirDrop', () => {
+        
+        const [ redCratesCount, redCratesFound ] = [mainSystem.allCrates["red"].length, mainSystem.cratesFound["red"].length];
+        const [ blueCratesCount, blueCratesFound ] = [mainSystem.allCrates["blue"].length, mainSystem.cratesFound["blue"].length];
+        
+        io.emit('chat-to-clients', `Red Crates Found: ${redCratesFound}`);
+        io.emit('chat-to-clients', `Blue Crates Found: ${blueCratesFound}`);
+        io.emit('displayAirDrop', { redCratesFound, blueCratesFound});
+    });
+
     sock.on('addChance', data => {
         const playerObj = mainSystem.getPlayerObject(data.studentId);
         playerObj.deployChance += parseInt(data.getNum);
